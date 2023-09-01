@@ -16,7 +16,7 @@
             {
                 $newhash = md5($_POST['password']);
                 
-                $DBCONN = pg_connect("host=localhost dbname=sqlinjection_demo user=postgres password=ÄNDERN");
+                $DBCONN = pg_connect("host=/var/run/postgresql dbname=sqlinjection_demo user=pooradmin password=sehrschwachespasswort");
                 $query = "select username, passwort from tb_user where username=" . "'" . $_POST['username'] . "'";
                 $query_result = pg_query($DBCONN, $query);
                 if(!$query_result){
