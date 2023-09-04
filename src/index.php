@@ -16,7 +16,7 @@
             {
                 $newhash = md5($_POST['password']);
                 
-                $DBCONN = pg_connect("host=/var/run/postgresql dbname=sqlinjection_demo user=pooradmin password=sehrschwachespasswort");
+                $DBCONN = pg_connect("host=/var/run/postgresql dbname=sqlinjection_demo user=traurigeradmin password=sehrschwachespasswort");
                 $query = "select username, passwort from tb_user where username=" . "'" . $_POST['username'] . "'";
                 $query_result = pg_query($DBCONN, $query);
                 if(!$query_result){
@@ -25,9 +25,10 @@
                 $row = pg_fetch_row($query_result);
 
                 if ( $row[1] == $newhash){                    
-                    echo "Hallo " . $row[0];
+                    echo "<p>Hallo " . $row[0] . "</p>";
+                    echo '<img> src="http://localhost/img/200w.gif"';
                 }else{
-                    echo '<p style="color: red">Falsches Passwort für Nutzer <b style="color: black">'. $row[0] .'</b></p>';
+                    echo '<p style="color: red">Falsches Passwort für Nutzer <b>'. $row[0] .'</b></p>';
                 }
             }
             
